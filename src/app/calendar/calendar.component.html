@@ -1,30 +1,34 @@
 <div class="calendario-titulo">
     <div>
         
-        <button mat-raised-button (click)="openDialog()" color="primary">Nova escala</button>
+        <button mat-raised-button (click)="openDialog()" class="mr-2" color="primary">Nova escala</button>
+        <button mat-stroked-button (click)="downloadPdf()" color="primary">Download</button>
+
     </div>
-    <div class="calendario-titulo-mes-ano">
+</div>
+<section id="printTable" class="justify-content-center">
+    <span class="calendario-titulo-mes-ano">
         <h2 *ngIf="diasCalendario.length > 0">{{month() + " - " + dataAtual.getFullYear()}}</h2>
-    </div>
-</div>
-<div class="calendario-dias">
-    <!-- Aqui renderizamos o nome do dia da semana -->
-    <ng-container *ngFor="let dia of diasDaSemana; let i = index">
-        <div *ngIf="i < 7">
-            <strong>{{ dia }}</strong>
+    </span>
+    <section class="calendario-dias">
+        <!-- Aqui renderizamos o nome do dia da semana -->
+        <ng-container *ngFor="let dia of diasDaSemana; let i = index">
+            <div *ngIf="i < 7">
+                <strong>{{ dia }}</strong>
+            </div>
+        </ng-container>
+        
+        <div *ngFor="let dia of diasCalendario; let i = index; let j = index"
+        class="calendario-dia"
+        [class.calendario-quebrar-linha]="i % itens.length === 0">
+            <div [class.calendario-dia-nao-faz-parte-mes-atual]="dataAtual.getMonth() !== dia.getMonth()">
+                {{dia | date : 'dd'}}                
+            </div>    
+            <div class="box" [style.background-color]="styles[(j-2)%itens.length]">
+                <a style="font-weight: bold" *ngIf="dataAtual.getMonth() === dia.getMonth()">
+                        {{itens[(j-2)%itens.length]}}
+                </a>
+            </div>
         </div>
-    </ng-container>
-    
-    <div *ngFor="let dia of diasCalendario; let i = index; let j = index"
-    class="calendario-dia"
-    [class.calendario-quebrar-linha]="i % itens.length === 0">
-        <div [class.calendario-dia-nao-faz-parte-mes-atual]="dataAtual.getMonth() !== dia.getMonth()">
-            {{dia | date : 'dd'}}                
-        </div>    
-        <div class="box" [style.background-color]="styles[(j-2)%itens.length]">
-            <a style="font-weight: bold" *ngIf="dataAtual.getMonth() === dia.getMonth()">
-                    {{itens[(j-2)%itens.length]}}
-            </a>
-        </div>
-    </div>
-</div>
+    </section>
+</section>

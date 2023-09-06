@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-calendar',
@@ -119,6 +120,22 @@ export class CalendarComponent {
     }
 
     return ''
+  }
+
+  downloadPdf(){
+    var doc = new jsPDF('l')
+    var elementHTML = document.querySelector("#printTable") as HTMLElement;
+    console.log(elementHTML)
+    let fileName = this.month() + '-' + this.dataAtual.getFullYear()
+    doc.html(elementHTML, {
+      callback: function(docPDF) {
+        docPDF.save(fileName);
+      },
+      x: 15,
+      y: 15,
+      width: 170,
+      windowWidth: 650
+    });
   }
 
 }
