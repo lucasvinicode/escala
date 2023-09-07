@@ -70,6 +70,7 @@ export class CalendarComponent {
       console.log(result.date)
       this.dataAtual = new Date(result.date);
       this.dataAtual.setMonth(this.dataAtual.getMonth());
+      this.diasDaSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
       this.diasCalendario = [];
       this.construirCalendario()
       this.sanitizeNames(result.names)
@@ -81,13 +82,13 @@ export class CalendarComponent {
   }
 
   styles = [
-    "rgb(255, 196, 196)",
-    "rgb(162, 91, 4)",
-    "rgb(61, 61, 61)",
-    "rgb(141, 110, 73)",
+    "rgb(150, 187, 239)",
+    "rgb(171, 111, 119)",
+    "rgb(186, 40, 25)",
+    "rgb(119, 102, 144)",
     "rgb(86, 143, 116)",
     "rgb(40, 64, 92)",
-    "rgb(190, 190, 190)",
+    "rgb(123, 203, 142)",
     "rgb(135, 83, 122)"
   ]
 

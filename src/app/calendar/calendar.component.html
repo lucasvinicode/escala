@@ -7,10 +7,10 @@
     </div>
 </div>
 <section id="printTable" class="justify-content-center">
-    <span class="calendario-titulo-mes-ano">
+    <span style="display: flex; grid-row: inherit; align-items: center; justify-content: center;" class="calendario-titulo-mes-ano">
         <h2 *ngIf="diasCalendario.length > 0">{{month() + " - " + dataAtual.getFullYear()}}</h2>
     </span>
-    <section class="calendario-dias">
+    <section style="display: grid; margin-top: 1px; grid-template-columns: repeat(7, 1fr); text-align: center; " class="calendario-dias">
         <!-- Aqui renderizamos o nome do dia da semana -->
         <ng-container *ngFor="let dia of diasDaSemana; let i = index">
             <div *ngIf="i < 7">
@@ -20,8 +20,9 @@
         
         <div *ngFor="let dia of diasCalendario; let i = index; let j = index"
         class="calendario-dia"
+        style="border: 1px solid #ccc; width: 150px; font-size: 20px; padding: 20px 0px 20px 0px;"
         [class.calendario-quebrar-linha]="i % itens.length === 0">
-            <div [class.calendario-dia-nao-faz-parte-mes-atual]="dataAtual.getMonth() !== dia.getMonth()">
+            <div [style.opacity]="dataAtual.getMonth() !== dia.getMonth() ? '50%' :  '100%'" [class.calendario-dia-nao-faz-parte-mes-atual]="dataAtual.getMonth() !== dia.getMonth()">
                 {{dia | date : 'dd'}}                
             </div>    
             <div class="box" [style.background-color]="styles[(j-2)%itens.length]">
