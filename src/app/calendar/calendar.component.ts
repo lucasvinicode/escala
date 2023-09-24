@@ -74,8 +74,13 @@ export class CalendarComponent {
       this.diasCalendario = [];
       this.construirCalendario()
       this.sanitizeNames(result.names)
+      console.log(this.diasCalendario)
     });
   } 
+
+  countDaysOfLastMonth() {
+    return this.diasCalendario.filter(x => this.dataAtual.getMonth()-1 === x.getMonth()).length
+  }
 
   sanitizeNames(str: string){
     this.itens = str.split(',');

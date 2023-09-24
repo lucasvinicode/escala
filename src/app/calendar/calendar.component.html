@@ -25,9 +25,9 @@
             <div [style.opacity]="dataAtual.getMonth() !== dia.getMonth() ? '50%' :  '100%'" [class.calendario-dia-nao-faz-parte-mes-atual]="dataAtual.getMonth() !== dia.getMonth()">
                 {{dia | date : 'dd'}}                
             </div>    
-            <div class="box" [style.background-color]="styles[(j-2)%itens.length]">
+            <div class="box" [style.background-color]="styles[(j-countDaysOfLastMonth())%itens.length]">
                 <a style="font-weight: bold" *ngIf="dataAtual.getMonth() === dia.getMonth()">
-                        {{itens[(j-2)%itens.length]}}
+                        {{itens[(j-countDaysOfLastMonth())%itens.length]}}
                 </a>
             </div>
         </div>
